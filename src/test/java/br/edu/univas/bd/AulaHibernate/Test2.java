@@ -6,22 +6,22 @@ import org.junit.Test;
 
 import br.edu.univas.bd.util.HibernateUtil;
 
-public class TesteAula1 {
-
+public class Test2 {
+	
 	@Test
-	public void testPersistir() {
+	public void test2 () {
 		
-		State mg = new State();
-		mg.setSigla("MG");
-		mg.setNome("Minas Gerais");
-		mg.setIbge(12345);
-		mg.setArea(99999);
+		Department dp = new Department();
+		
+		dp.setNome("Finanças");
 		
 		EntityManager em = HibernateUtil.getEntityManager();
 		
 		em.getTransaction().begin();
-		em.persist(mg);
+		em.persist(dp);
 		em.getTransaction().commit();
 		
+		System.out.println("Código: " + dp.getCodigo());
 	}
+
 }

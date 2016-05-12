@@ -1,24 +1,20 @@
 package br.edu.univas.bd.AulaHibernate;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ESTADO")
-public class State implements Serializable {
-	
+@Table (name="CIDADE")
+public class City implements Serializable {
+
 	@Id
 	private int ibge;
-	
-	@Column(name="SIGLA", nullable=false, length=2)
-	private String sigla;
 	
 	@Column (name="NOME", nullable=false, length=30)
 	private String nome;
@@ -26,18 +22,11 @@ public class State implements Serializable {
 	@Column (name="AREA", nullable=false)
 	private float area;
 	
-	@OneToMany (mappedBy="estado")
-	private Set<City> cities;
+	@ManyToOne
+	@JoinColumn (name="UF_PK")
+	private State estado;
 	
-	public Set<City> getCities() {
-		return cities;
-	}
-
-	public void setCities(Set<City> cities) {
-		this.cities = cities;
-	}
-	
-	public State() {
+	public City() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -47,14 +36,6 @@ public class State implements Serializable {
 
 	public void setIbge(int ibge) {
 		this.ibge = ibge;
-	}
-
-	public String getSigla() {
-		return sigla;
-	}
-
-	public void setSigla(String sigla) {
-		this.sigla = sigla;
 	}
 
 	public String getNome() {
@@ -73,9 +54,12 @@ public class State implements Serializable {
 		this.area = area;
 	}
 
-	@Override
-	public String toString() {
-		return "State [ibge=" + ibge + ", sigla=" + sigla + ", nome=" + nome + ", area=" + area + "]";
+	public State getEstado() {
+		return estado;
+	}
+
+	public void setEstado(State estado) {
+		this.estado = estado;
 	}
 	
 }
